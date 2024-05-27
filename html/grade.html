@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Client-Side Validation Example</title>
+    <script>
+        function validateForm() {
+            const email = document.forms["myForm"][" email"].value;
+            const message = document.forms["myForm"]["message"].value;
+            
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+
+            if (message == "") {
+                alert("Message must be filled out");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
-    <h1>grade</h1>
-    <script src="../js/grade.js"></script>
-    
+    <form name="myForm" onsubmit="return validateForm()">
+        Email: <input type="text" name="email"><br><br>
+        Message: <textarea name="message"></textarea><br><br>
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

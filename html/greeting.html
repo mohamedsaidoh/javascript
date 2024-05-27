@@ -1,13 +1,37 @@
-<!DOCTYPE html>
+ 
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>greeting</h1>
-    <script src="../js/greeting.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Client-Side Validation Example</title>
+        <script>
+            function validateForm() {
+                const email = document.forms["myForm"]["email"].value;
+                const message = document.forms["myForm"]["message"].value;
+                let valid = true;
     
-</body>
-</html>
+                // Reset previous error messages
+                document.getElementById("emailError").textContent = "";
+                document.getElementById("messageError").textContent = "";
+    
+                // Check if email is filled out
+                if (email == "") {
+                    document.getElementById("emailError").textContent = "Email must be filled out";
+                    valid = false;
+                }
+    
+                // Check if message is filled out
+                if (message == "") {
+                    document.getElementById("messageError").textContent = "Message must be filled out";
+                    valid = false;
+                }
+    
+                return valid; // if validation passes, form will be submitted
+            }
+        </script>
+    </head>
+    <body>
+        <form name="myForm" onsubmit="return validateForm()">
+            Email: <input type="text" name="email"><span id="emailError" style="color:red;"></span><br><br>
+            Message: <textarea name="message"></textarea><span id="messageError" style="color:red;"></span><br><br>
+            <input type="submit" value="Submit">
